@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siddhartha Selvaraj</title>
+  <meta name="description" content="Personal website and portfolio of Siddhartha Selvaraj — software engineer." />
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3250;
+      --text: #e2e8f0;
+      --text-muted: #8892a4;
+      --accent: #6366f1;
+      --accent-light: #818cf8;
+      --accent-dim: rgba(99, 102, 241, 0.15);
+      --green: #10b981;
+      --green-dim: rgba(16, 185, 129, 0.15);
+      --radius: 12px;
+      --radius-sm: 6px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── Nav ────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 17, 23, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent-light);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* ── Layout ─────────────────────────────────────── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    section + section {
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 2rem;
+    }
+
+    /* ── Hero ───────────────────────────────────────── */
+    #hero {
+      padding: 7rem 0 5rem;
+      border-top: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.9rem;
+      color: var(--accent-light);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.3rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      background: var(--surface2);
+      transform: translateY(-1px);
+    }
+
+    /* ── About ──────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      font-size: 1.05rem;
+    }
+
+    .about-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent-light);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+    }
+
+    /* ── Skills ─────────────────────────────────────── */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .skill-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .skill-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent-light);
+      background: var(--accent-dim);
+    }
+
+    .skill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── Repos ──────────────────────────────────────── */
+    .repos-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .repos-header h2 {
+      margin-bottom: 0;
+    }
+
+    .repo-filters {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      border-color: var(--accent);
+      color: var(--accent-light);
+      background: var(--accent-dim);
+    }
+
+    .repos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .repo-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: all 0.2s;
+    }
+
+    .repo-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(99, 102, 241, 0.12);
+    }
+
+    .repo-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--accent-light);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .repo-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      flex: 1;
+      line-height: 1.5;
+    }
+
+    .repo-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    .repo-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .lang-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .repos-loading,
+    .repos-error {
+      color: var(--text-muted);
+      text-align: center;
+      padding: 3rem;
+      grid-column: 1 / -1;
+    }
+
+    .repos-error {
+      color: #f87171;
+    }
+
+    /* ── Contact ────────────────────────────────────── */
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 3rem;
+      text-align: center;
+    }
+
+    .contact-card p {
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0.75rem auto 2rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── Footer ─────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Responsive ─────────────────────────────────── */
+    @media (max-width: 680px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        padding: 0 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      section {
+        padding: 3.5rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-brand" href="#hero">SS</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#repos">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section id="hero">
+    <div class="container">
+      <p class="hero-eyebrow">Hello, I'm</p>
+      <h1>Siddhartha<br/>Selvaraj</h1>
+      <p class="hero-subtitle">
+        Software Engineer passionate about systems programming, performance, and building things that last.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#repos">View Projects</a>
+        <a class="btn btn-ghost" href="#contact">Get in touch</a>
+        <a class="btn btn-ghost" href="https://github.com/siddhartha-selvaraj" target="_blank" rel="noopener">
+          GitHub ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About ── -->
+  <section id="about">
+    <div class="container">
+      <p class="section-label">About</p>
+      <div class="about-grid">
+        <div class="about-text">
+          <h2>A bit about me</h2>
+          <p>
+            I'm a software engineer who enjoys working close to the metal — from systems-level Rust to clean APIs. I care about correctness, performance, and code that's easy to reason about.
+          </p>
+          <p>
+            When I'm not writing code, I'm usually reading about compilers, distributed systems, or contributing to open source.
+          </p>
+          <p>
+            This page showcases my public projects. All the source lives on GitHub — feel free to explore.
+          </p>
+        </div>
+        <div class="stat-grid" id="stats">
+          <div class="stat-card">
+            <div class="stat-value" id="stat-repos">—</div>
+            <div class="stat-label">Public repos</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-stars">—</div>
+            <div class="stat-label">Total stars</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-langs">—</div>
+            <div class="stat-label">Languages</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-forks">—</div>
+            <div class="stat-label">Total forks</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Skills ── -->
+  <section id="skills">
+    <div class="container">
+      <p class="section-label">Tech Stack</p>
+      <h2>Skills &amp; Tools</h2>
+      <div class="skills-grid">
+        <!-- Languages -->
+        <span class="skill-chip"><span class="skill-dot" style="background:#dea584"></span>Rust</span>
+        <span class="skill-chip"><span class="skill-dot" style="background:#3178c6"></span>TypeScript</span>
+        <span class="skill-chip"><span class="skill-dot" style="background:#f7df1e"></span>JavaScript</span>
+        <span class="skill-chip"><span class="skill-dot" style="background:#3572a5"></span>Python</span>
+        <span class="skill-chip"><span class="skill-dot" style="background:#b07219"></span>Java</span>
+        <span class="skill-chip"><span class="skill-dot" style="background:#00add8"></span>Go</span>
+        <span class="skill-chip"><span class="skill-dot" style="background:#e34c26"></span>HTML/CSS</span>
+        <!-- Tools & Infra -->
+        <span class="skill-chip"><span class="skill-dot" style="background:#2496ed"></span>Docker</span>
+        <span class="skill-chip"><span class="skill-dot" style="background:#326ce5"></span>Kubernetes</span>
+        <span class="skill-chip"><span class="skill-dot" style="background:#ff9900"></span>AWS</span>
+        <span class="skill-chip"><span class="skill-dot" style="background:#f05032"></span>Git</span>
+        <span class="skill-chip"><span class="skill-dot" style="background:#4caf50"></span>Linux</span>
+        <!-- Concepts -->
+        <span class="skill-chip">Systems Programming</span>
+        <span class="skill-chip">Distributed Systems</span>
+        <span class="skill-chip">REST / gRPC APIs</span>
+        <span class="skill-chip">CI/CD</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Repos ── -->
+  <section id="repos">
+    <div class="container">
+      <div class="repos-header">
+        <div>
+          <p class="section-label">Open Source</p>
+          <h2>Projects</h2>
+        </div>
+        <div class="repo-filters" id="filters"></div>
+      </div>
+      <div class="repos-grid" id="repos-grid">
+        <p class="repos-loading">Loading repositories…</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ── -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label">Contact</p>
+      <div class="contact-card">
+        <h2>Let's connect</h2>
+        <p>
+          I'm always open to interesting conversations, collaboration, or new opportunities. The best way to reach me is via email or GitHub.
+        </p>
+        <div class="social-links">
+          <a class="btn btn-primary" href="mailto:siddharthas012@gmail.com">
+            Email me
+          </a>
+          <a class="btn btn-ghost" href="https://github.com/siddhartha-selvaraj" target="_blank" rel="noopener">
+            GitHub ↗
+          </a>
+          <!-- Uncomment and update when you have a LinkedIn URL:
+          <a class="btn btn-ghost" href="https://linkedin.com/in/YOUR-HANDLE" target="_blank" rel="noopener">
+            LinkedIn ↗
+          </a>
+          -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      Built with vanilla HTML/CSS/JS · Source on
+      <a href="https://github.com/siddhartha-selvaraj/siddhartha-selvaraj.github.io" style="color:var(--accent-light);text-decoration:none" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </footer>
+
+  <script>
+    const GH_USER = "siddhartha-selvaraj";
+    const GH_API  = `https://api.github.com/users/${GH_USER}/repos?per_page=100&sort=updated`;
+
+    /* language → hex colour (GitHub palette) */
+    const LANG_COLORS = {
+      Rust: "#dea584", JavaScript: "#f1e05a", TypeScript: "#3178c6",
+      Python: "#3572a5", Java: "#b07219", Go: "#00add8", "C++": "#f34b7d",
+      C: "#555555", Shell: "#89e051", HTML: "#e34c26", CSS: "#563d7c",
+      Ruby: "#701516", Kotlin: "#a97bff", Swift: "#f05138",
+      "C#": "#178600", Zig: "#ec915c", Nix: "#7e7eff",
+    };
+
+    function langColor(lang) {
+      return LANG_COLORS[lang] || "#8892a4";
+    }
+
+    /* ── Fetch & render repos ── */
+    async function loadRepos() {
+      const grid = document.getElementById("repos-grid");
+      try {
+        const res = await fetch(GH_API);
+        if (!res.ok) throw new Error(`GitHub API error ${res.status}`);
+        const repos = await res.json();
+
+        /* Exclude forks by default, sort by stars then updated */
+        const own = repos
+          .filter(r => !r.fork)
+          .sort((a, b) => (b.stargazers_count - a.stargazers_count) || new Date(b.updated_at) - new Date(a.updated_at));
+
+        updateStats(repos);
+        buildFilters(own);
+        renderCards(own);
+      } catch (err) {
+        grid.innerHTML = `<p class="repos-error">Could not load repositories. Check back later.<br/><small>${err.message}</small></p>`;
+      }
+    }
+
+    function updateStats(repos) {
+      const own = repos.filter(r => !r.fork);
+      const stars = own.reduce((s, r) => s + r.stargazers_count, 0);
+      const forks = own.reduce((s, r) => s + r.forks_count, 0);
+      const langs = new Set(own.map(r => r.language).filter(Boolean)).size;
+
+      document.getElementById("stat-repos").textContent = own.length;
+      document.getElementById("stat-stars").textContent = stars;
+      document.getElementById("stat-langs").textContent = langs;
+      document.getElementById("stat-forks").textContent = forks;
+    }
+
+    let allRepos = [];
+
+    function buildFilters(repos) {
+      allRepos = repos;
+      const langCounts = {};
+      repos.forEach(r => {
+        if (r.language) langCounts[r.language] = (langCounts[r.language] || 0) + 1;
+      });
+      const topLangs = Object.entries(langCounts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5)
+        .map(([l]) => l);
+
+      const container = document.getElementById("filters");
+      const all = makeFilterBtn("All", true, () => renderCards(allRepos));
+      container.appendChild(all);
+
+      topLangs.forEach(lang => {
+        const btn = makeFilterBtn(lang, false, () => {
+          renderCards(allRepos.filter(r => r.language === lang));
+        });
+        container.appendChild(btn);
+      });
+    }
+
+    function makeFilterBtn(label, active, onClick) {
+      const btn = document.createElement("button");
+      btn.className = "filter-btn" + (active ? " active" : "");
+      btn.textContent = label;
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        onClick();
+      });
+      return btn;
+    }
+
+    function renderCards(repos) {
+      const grid = document.getElementById("repos-grid");
+      if (!repos.length) {
+        grid.innerHTML = `<p class="repos-loading">No repositories found.</p>`;
+        return;
+      }
+      grid.innerHTML = repos.map(r => `
+        <a class="repo-card" href="${r.html_url}" target="_blank" rel="noopener">
+          <div class="repo-name">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/>
+            </svg>
+            ${r.name}
+          </div>
+          <p class="repo-desc">${r.description || "No description provided."}</p>
+          <div class="repo-meta">
+            ${r.language ? `<span><span class="lang-dot" style="background:${langColor(r.language)}"></span>${r.language}</span>` : ""}
+            ${r.stargazers_count ? `<span>★ ${r.stargazers_count}</span>` : ""}
+            ${r.forks_count ? `<span>⑂ ${r.forks_count}</span>` : ""}
+          </div>
+        </a>
+      `).join("");
+    }
+
+    loadRepos();
+  </script>
+</body>
+</html>
