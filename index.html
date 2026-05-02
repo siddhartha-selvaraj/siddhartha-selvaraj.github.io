@@ -5,691 +5,291 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Siddhartha Selvaraj</title>
   <meta name="description" content="Personal website and portfolio of Siddhartha Selvaraj — software engineer." />
-  <style>
-    :root {
-      --bg: #0f1117;
-      --surface: #1a1d27;
-      --surface2: #22263a;
-      --border: #2e3250;
-      --text: #e2e8f0;
-      --text-muted: #8892a4;
-      --accent: #6366f1;
-      --accent-light: #818cf8;
-      --accent-dim: rgba(99, 102, 241, 0.15);
-      --green: #10b981;
-      --green-dim: rgba(16, 185, 129, 0.15);
-      --radius: 12px;
-      --radius-sm: 6px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-
-    /* ── Nav ────────────────────────────────────────── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(15, 17, 23, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav-brand {
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--accent-light);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    /* ── Layout ─────────────────────────────────────── */
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    section {
-      padding: 5rem 0;
-    }
-
-    section + section {
-      border-top: 1px solid var(--border);
-    }
-
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
-    }
-
-    h2 {
-      font-size: 1.75rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 2rem;
-    }
-
-    /* ── Hero ───────────────────────────────────────── */
-    #hero {
-      padding: 7rem 0 5rem;
-      border-top: none;
-    }
-
-    .hero-eyebrow {
-      font-size: 0.9rem;
-      color: var(--accent-light);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .hero-eyebrow::before {
-      content: "";
-      display: inline-block;
-      width: 24px;
-      height: 2px;
-      background: var(--accent);
-    }
-
-    h1 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-
-    .hero-subtitle {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      max-width: 520px;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.6rem 1.3rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.2s;
-      cursor: pointer;
-      border: none;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-light);
-      transform: translateY(-1px);
-    }
-
-    .btn-ghost {
-      background: var(--surface);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .btn-ghost:hover {
-      background: var(--surface2);
-      transform: translateY(-1px);
-    }
-
-    /* ── About ──────────────────────────────────────── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-
-    .about-text p {
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-      font-size: 1.05rem;
-    }
-
-    .about-text p:last-child {
-      margin-bottom: 0;
-    }
-
-    .stat-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .stat-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem;
-      text-align: center;
-    }
-
-    .stat-value {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--accent-light);
-      letter-spacing: -0.04em;
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 0.4rem;
-    }
-
-    /* ── Skills ─────────────────────────────────────── */
-    .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-    }
-
-    .skill-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.4rem 0.9rem;
-      border-radius: 100px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text);
-      transition: all 0.2s;
-    }
-
-    .skill-chip:hover {
-      border-color: var(--accent);
-      color: var(--accent-light);
-      background: var(--accent-dim);
-    }
-
-    .skill-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    /* ── Repos ──────────────────────────────────────── */
-    .repos-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .repos-header h2 {
-      margin-bottom: 0;
-    }
-
-    .repo-filters {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      padding: 0.3rem 0.8rem;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .filter-btn:hover,
-    .filter-btn.active {
-      border-color: var(--accent);
-      color: var(--accent-light);
-      background: var(--accent-dim);
-    }
-
-    .repos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1rem;
-    }
-
-    .repo-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      transition: all 0.2s;
-    }
-
-    .repo-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(99, 102, 241, 0.12);
-    }
-
-    .repo-name {
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--accent-light);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .repo-desc {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      flex: 1;
-      line-height: 1.5;
-    }
-
-    .repo-meta {
-      display: flex;
-      gap: 1rem;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      flex-wrap: wrap;
-    }
-
-    .repo-meta span {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .lang-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-
-    .repos-loading,
-    .repos-error {
-      color: var(--text-muted);
-      text-align: center;
-      padding: 3rem;
-      grid-column: 1 / -1;
-    }
-
-    .repos-error {
-      color: #f87171;
-    }
-
-    /* ── Contact ────────────────────────────────────── */
-    .contact-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 3rem;
-      text-align: center;
-    }
-
-    .contact-card p {
-      color: var(--text-muted);
-      max-width: 480px;
-      margin: 0.75rem auto 2rem;
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    /* ── Footer ─────────────────────────────────────── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem;
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    /* ── Responsive ─────────────────────────────────── */
-    @media (max-width: 680px) {
-      .about-grid {
-        grid-template-columns: 1fr;
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas:  '#0d0f18',
+            panel:   '#161927',
+            panel2:  '#1e2235',
+            wire:    '#2a2f4e',
+            faint:   '#8892a4',
+            violet:  '#6366f1',
+            lavender:'#818cf8',
+            'violet-dim': 'rgba(99,102,241,0.12)',
+          }
+        }
       }
-
-      nav {
-        padding: 0 1rem;
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer base {
+      html { scroll-behavior: smooth; }
+      a    { text-decoration: none; }
+      ul   { list-style: none; margin: 0; padding: 0; }
+    }
+    @layer components {
+      .skill-chip {
+        @apply inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-medium
+               bg-panel border border-wire text-slate-300
+               hover:border-violet hover:text-lavender hover:bg-violet-dim
+               transition-all duration-200 cursor-default;
       }
-
-      .nav-links {
-        gap: 1rem;
+      .filter-btn   { @apply px-3 py-1 rounded-full text-xs font-medium border cursor-pointer transition-all duration-200; }
+      .filter-idle  { @apply border-wire text-faint bg-transparent hover:border-violet hover:text-lavender hover:bg-violet-dim; }
+      .filter-active{ @apply border-violet text-lavender bg-violet-dim; }
+      .btn-primary  {
+        @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-violet text-white text-sm font-medium
+               hover:bg-lavender hover:-translate-y-px transition-all duration-200;
       }
-
-      section {
-        padding: 3.5rem 0;
+      .btn-ghost {
+        @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-panel text-slate-200 border border-wire text-sm font-medium
+               hover:border-lavender hover:-translate-y-px transition-all duration-200;
       }
+      .section-label { @apply text-xs font-semibold tracking-widest uppercase text-violet mb-3; }
+      .section-title { @apply text-[1.75rem] font-bold tracking-tight mb-8; }
     }
   </style>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
 </head>
-<body>
+<body class="bg-canvas text-slate-200 min-h-screen antialiased">
 
-  <nav>
-    <a class="nav-brand" href="#hero">SS</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#repos">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
+  <!-- Nav -->
+  <nav class="sticky top-0 z-50 border-b border-wire h-[60px] px-8 flex items-center justify-between"
+       style="background:rgba(13,15,24,0.82);backdrop-filter:blur(18px)">
+    <a href="#hero" class="font-bold text-[1.1rem] text-lavender tracking-tight">SS</a>
+    <ul class="flex gap-8">
+      <li><a href="#about"   class="text-faint text-sm hover:text-slate-100 transition-colors duration-200">About</a></li>
+      <li><a href="#skills"  class="text-faint text-sm hover:text-slate-100 transition-colors duration-200">Skills</a></li>
+      <li><a href="#repos"   class="text-faint text-sm hover:text-slate-100 transition-colors duration-200">Projects</a></li>
+      <li><a href="#contact" class="text-faint text-sm hover:text-slate-100 transition-colors duration-200">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- ── Hero ── -->
-  <section id="hero">
-    <div class="container">
-      <p class="hero-eyebrow">Hello, I'm</p>
-      <h1>Siddhartha<br/>Selvaraj</h1>
-      <p class="hero-subtitle">
+  <!-- Hero -->
+  <section id="hero" class="relative pt-32 pb-28 overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none"
+         style="background:radial-gradient(ellipse 70% 55% at 50% -5%,rgba(99,102,241,0.2),transparent)"></div>
+    <div class="relative max-w-[900px] mx-auto px-6">
+      <h1 class="text-[clamp(3rem,7.5vw,5.5rem)] font-extrabold tracking-[-0.04em] leading-[1.05] mb-6"
+          style="background:linear-gradient(130deg,#fff 35%,#818cf8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">
+        Siddhartha<br/>Selvaraj
+      </h1>
+      <p class="text-xl text-faint max-w-[540px] mb-10 leading-relaxed">
         Senior Software Engineer · Embedded Systems · AAOS/AOSP · C++11/14/17
       </p>
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="#repos">View Projects</a>
-        <a class="btn btn-ghost" href="#contact">Get in touch</a>
-        <a class="btn btn-ghost" href="https://github.com/siddhartha-selvaraj" target="_blank" rel="noopener">
-          GitHub ↗
-        </a>
+      <div class="flex gap-3 flex-wrap">
+        <a href="#repos" class="btn-primary">View Projects</a>
+        <a href="https://github.com/siddhartha-selvaraj" target="_blank" rel="noopener" class="btn-ghost">GitHub ↗</a>
       </div>
     </div>
   </section>
 
-  <!-- ── About ── -->
-  <section id="about">
-    <div class="container">
+  <!-- About -->
+  <section id="about" class="py-24 border-t border-wire">
+    <div class="max-w-[900px] mx-auto px-6">
       <p class="section-label">About</p>
-      <div class="about-grid">
-        <div class="about-text">
-          <h2>A bit about me</h2>
-          <p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-14 items-start">
+        <div>
+          <h2 class="section-title">A bit about me</h2>
+          <p class="text-faint mb-4 leading-relaxed">
             I'm a Senior Software Engineer specialising in embedded systems, automotive middleware, and AAOS/AOSP platform development. I write modern C++ (11/14/17) and care deeply about correctness, performance, and code that behaves predictably close to the metal.
           </p>
-          <p>
+          <p class="text-faint mb-4 leading-relaxed">
             My work spans embedded middleware, ADAS virtual environment development, and Android Automotive OS integration — building software that ends up in real vehicles.
           </p>
-          <p>
+          <p class="text-faint leading-relaxed">
             This page showcases my public projects. All the source lives on GitHub — feel free to explore.
           </p>
         </div>
-        <div class="stat-grid" id="stats">
-          <div class="stat-card">
-            <div class="stat-value" id="stat-repos">—</div>
-            <div class="stat-label">Public repos</div>
+        <div x-data="ghStats()" x-init="load()" class="grid grid-cols-2 gap-3">
+          <div class="bg-panel border border-wire rounded-2xl p-5 text-center" style="border-top:2px solid #6366f1">
+            <div class="text-[2.2rem] font-extrabold text-white tracking-tight leading-none mb-1.5" x-text="repos">—</div>
+            <div class="text-xs text-faint uppercase tracking-wider">Repos</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-value" id="stat-stars">—</div>
-            <div class="stat-label">Total stars</div>
+          <div class="bg-panel border border-wire rounded-2xl p-5 text-center" style="border-top:2px solid #6366f1">
+            <div class="text-[2.2rem] font-extrabold text-white tracking-tight leading-none mb-1.5" x-text="stars">—</div>
+            <div class="text-xs text-faint uppercase tracking-wider">Stars</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-value" id="stat-langs">—</div>
-            <div class="stat-label">Languages</div>
+          <div class="bg-panel border border-wire rounded-2xl p-5 text-center" style="border-top:2px solid #6366f1">
+            <div class="text-[2.2rem] font-extrabold text-white tracking-tight leading-none mb-1.5" x-text="langs">—</div>
+            <div class="text-xs text-faint uppercase tracking-wider">Languages</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-value" id="stat-forks">—</div>
-            <div class="stat-label">Total forks</div>
+          <div class="bg-panel border border-wire rounded-2xl p-5 text-center" style="border-top:2px solid #6366f1">
+            <div class="text-[2.2rem] font-extrabold text-white tracking-tight leading-none mb-1.5" x-text="forks">—</div>
+            <div class="text-xs text-faint uppercase tracking-wider">Forks</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── Skills ── -->
-  <section id="skills">
-    <div class="container">
+  <!-- Skills -->
+  <section id="skills" class="py-24 border-t border-wire">
+    <div class="max-w-[900px] mx-auto px-6">
       <p class="section-label">Tech Stack</p>
-      <h2>Skills &amp; Tools</h2>
-      <div class="skills-grid">
-        <!-- Languages -->
-        <span class="skill-chip"><span class="skill-dot" style="background:#f34b7d"></span>C++11/14/17</span>
-        <span class="skill-chip"><span class="skill-dot" style="background:#555555"></span>C</span>
-        <span class="skill-chip"><span class="skill-dot" style="background:#dea584"></span>Rust</span>
-        <span class="skill-chip"><span class="skill-dot" style="background:#3572a5"></span>Python</span>
-        <!-- Platforms & OS -->
-        <span class="skill-chip"><span class="skill-dot" style="background:#3ddc84"></span>AOSP / AAOS</span>
-        <span class="skill-chip"><span class="skill-dot" style="background:#4caf50"></span>Linux</span>
-        <span class="skill-chip"><span class="skill-dot" style="background:#0078d7"></span>QNX</span>
-        <!-- Domains -->
+      <h2 class="section-title">Skills &amp; Tools</h2>
+      <div class="flex flex-wrap gap-2.5">
+        <span class="skill-chip"><span class="w-2 h-2 rounded-full bg-[#f34b7d] shrink-0"></span>C++11/14/17</span>
+        <span class="skill-chip"><span class="w-2 h-2 rounded-full bg-[#555] shrink-0"></span>C</span>
+        <span class="skill-chip"><span class="w-2 h-2 rounded-full bg-[#dea584] shrink-0"></span>Rust</span>
+        <span class="skill-chip"><span class="w-2 h-2 rounded-full bg-[#3572a5] shrink-0"></span>Python</span>
+        <span class="skill-chip"><span class="w-2 h-2 rounded-full bg-[#3ddc84] shrink-0"></span>AOSP / AAOS</span>
+        <span class="skill-chip"><span class="w-2 h-2 rounded-full bg-[#4caf50] shrink-0"></span>Linux</span>
+        <span class="skill-chip"><span class="w-2 h-2 rounded-full bg-[#0078d7] shrink-0"></span>QNX</span>
         <span class="skill-chip">Embedded Systems</span>
         <span class="skill-chip">Embedded Middleware</span>
         <span class="skill-chip">ADAS Virtual Environment</span>
         <span class="skill-chip">Automotive Software</span>
         <span class="skill-chip">Systems Programming</span>
-        <!-- Tools -->
-        <span class="skill-chip"><span class="skill-dot" style="background:#f05032"></span>Git</span>
+        <span class="skill-chip"><span class="w-2 h-2 rounded-full bg-[#f05032] shrink-0"></span>Git</span>
         <span class="skill-chip">CMake</span>
         <span class="skill-chip">GDB</span>
       </div>
     </div>
   </section>
 
-  <!-- ── Repos ── -->
-  <section id="repos">
-    <div class="container">
-      <div class="repos-header">
+  <!-- Repos -->
+  <section id="repos" class="py-24 border-t border-wire" x-data="ghRepos()" x-init="load()">
+    <div class="max-w-[900px] mx-auto px-6">
+      <div class="flex items-end justify-between flex-wrap gap-4 mb-10">
         <div>
           <p class="section-label">Open Source</p>
-          <h2>Projects</h2>
+          <h2 class="text-[1.75rem] font-bold tracking-tight">Projects</h2>
         </div>
-        <div class="repo-filters" id="filters"></div>
+        <div class="flex gap-2 flex-wrap" x-show="!loading && !error">
+          <button @click="filterBy('All')" :class="active==='All'?'filter-active':'filter-idle'" class="filter-btn">All</button>
+          <template x-for="lang in filters" :key="lang">
+            <button @click="filterBy(lang)" :class="active===lang?'filter-active':'filter-idle'" class="filter-btn" x-text="lang"></button>
+          </template>
+        </div>
       </div>
-      <div class="repos-grid" id="repos-grid">
-        <p class="repos-loading">Loading repositories…</p>
+      <div class="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-4">
+        <p x-show="loading" class="text-faint text-center py-16 col-span-full">Loading repositories…</p>
+        <p x-show="error && !loading" class="text-red-400 text-center py-16 col-span-full" x-text="error"></p>
+        <template x-for="repo in filtered" :key="repo.id">
+          <a :href="repo.html_url" target="_blank" rel="noopener"
+             class="bg-panel border border-wire rounded-2xl p-5 flex flex-col gap-3
+                    hover:border-violet hover:-translate-y-1
+                    hover:shadow-[0_12px_40px_rgba(99,102,241,0.15)]
+                    transition-all duration-200">
+            <div class="flex items-center gap-2 text-sm font-semibold text-lavender">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor" class="shrink-0 opacity-70">
+                <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/>
+              </svg>
+              <span x-text="repo.name"></span>
+            </div>
+            <p class="text-sm text-faint flex-1 leading-relaxed"
+               x-text="repo.description || 'No description provided.'"></p>
+            <div class="flex gap-4 text-xs text-faint flex-wrap pt-1 border-t border-wire">
+              <span x-show="repo.language" class="flex items-center gap-1.5 pt-2">
+                <span class="w-2.5 h-2.5 rounded-full" :style="`background:${langColor(repo.language)}`"></span>
+                <span x-text="repo.language"></span>
+              </span>
+              <span x-show="repo.stargazers_count" x-text="`★ ${repo.stargazers_count}`" class="pt-2"></span>
+              <span x-show="repo.forks_count" x-text="`⑂ ${repo.forks_count}`" class="pt-2"></span>
+            </div>
+          </a>
+        </template>
       </div>
     </div>
   </section>
 
-  <!-- ── Contact ── -->
-  <section id="contact">
-    <div class="container">
+  <!-- Contact -->
+  <section id="contact" class="py-24 border-t border-wire">
+    <div class="max-w-[900px] mx-auto px-6">
       <p class="section-label">Contact</p>
-      <div class="contact-card">
-        <h2>Let's connect</h2>
-        <p>
-          I'm always open to interesting conversations, collaboration, or new opportunities. The best way to reach me is via email or GitHub.
-        </p>
-        <div class="social-links">
-          <a class="btn btn-primary" href="mailto:siddharthas012@gmail.com">
-            Email me
-          </a>
-          <a class="btn btn-ghost" href="https://github.com/siddhartha-selvaraj" target="_blank" rel="noopener">
-            GitHub ↗
-          </a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/siddharthaselvaraj/" target="_blank" rel="noopener">
-            LinkedIn ↗
-          </a>
+      <div class="relative overflow-hidden rounded-2xl border border-wire p-16 text-center"
+           style="background:linear-gradient(135deg,#161927 0%,#1a1d38 100%)">
+        <div class="absolute inset-0 pointer-events-none"
+             style="background:radial-gradient(ellipse 65% 65% at 50% 110%,rgba(99,102,241,0.12),transparent)"></div>
+        <div class="relative">
+          <h2 class="text-[1.75rem] font-bold tracking-tight mb-3">Let's connect</h2>
+          <p class="text-faint max-w-[440px] mx-auto mb-10 leading-relaxed">
+            I'm always open to interesting conversations, collaboration, or new opportunities. Find me on GitHub or LinkedIn.
+          </p>
+          <div class="flex justify-center gap-3 flex-wrap">
+            <a href="https://github.com/siddhartha-selvaraj" target="_blank" rel="noopener" class="btn-ghost">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/siddharthaselvaraj/" target="_blank" rel="noopener" class="btn-ghost">LinkedIn ↗</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="container">
-      Built with vanilla HTML/CSS/JS · Source on
-      <a href="https://github.com/siddhartha-selvaraj/siddhartha-selvaraj.github.io" style="color:var(--accent-light);text-decoration:none" target="_blank" rel="noopener">GitHub</a>
+  <footer class="border-t border-wire py-8 text-center text-sm text-faint">
+    <div class="max-w-[900px] mx-auto px-6">
+      Built with Tailwind CSS + Alpine.js · Source on
+      <a href="https://github.com/siddhartha-selvaraj/siddhartha-selvaraj.github.io"
+         class="text-lavender hover:text-violet transition-colors" target="_blank" rel="noopener">GitHub</a>
     </div>
   </footer>
 
   <script>
-    const GH_USER = "siddhartha-selvaraj";
+    const GH_USER = 'siddhartha-selvaraj';
     const GH_API  = `https://api.github.com/users/${GH_USER}/repos?per_page=100&sort=updated`;
 
-    /* language → hex colour (GitHub palette) */
     const LANG_COLORS = {
-      Rust: "#dea584", JavaScript: "#f1e05a", TypeScript: "#3178c6",
-      Python: "#3572a5", Java: "#b07219", Go: "#00add8", "C++": "#f34b7d",
-      C: "#555555", Shell: "#89e051", HTML: "#e34c26", CSS: "#563d7c",
-      Ruby: "#701516", Kotlin: "#a97bff", Swift: "#f05138",
-      "C#": "#178600", Zig: "#ec915c", Nix: "#7e7eff",
+      Rust:'#dea584', JavaScript:'#f1e05a', TypeScript:'#3178c6', Python:'#3572a5',
+      Java:'#b07219', Go:'#00add8', 'C++':'#f34b7d', C:'#555555', Shell:'#89e051',
+      HTML:'#e34c26', CSS:'#563d7c', Ruby:'#701516', Kotlin:'#a97bff', Swift:'#f05138',
+      'C#':'#178600', Zig:'#ec915c', Nix:'#7e7eff',
     };
 
-    function langColor(lang) {
-      return LANG_COLORS[lang] || "#8892a4";
+    function langColor(lang) { return LANG_COLORS[lang] || '#8892a4'; }
+
+    // shared cache — one API call for both components
+    let _cache = null;
+    function fetchRepos() {
+      if (!_cache) _cache = fetch(GH_API)
+        .then(r => { if (!r.ok) throw new Error(`GitHub API ${r.status}`); return r.json(); });
+      return _cache;
     }
 
-    /* ── Fetch & render repos ── */
-    async function loadRepos() {
-      const grid = document.getElementById("repos-grid");
-      try {
-        const res = await fetch(GH_API);
-        if (!res.ok) throw new Error(`GitHub API error ${res.status}`);
-        const repos = await res.json();
-
-        /* Exclude forks by default, sort by stars then updated */
-        const own = repos
-          .filter(r => !r.fork)
-          .sort((a, b) => (b.stargazers_count - a.stargazers_count) || new Date(b.updated_at) - new Date(a.updated_at));
-
-        updateStats(repos);
-        buildFilters(own);
-        renderCards(own);
-      } catch (err) {
-        grid.innerHTML = `<p class="repos-error">Could not load repositories. Check back later.<br/><small>${err.message}</small></p>`;
-      }
+    function ghStats() {
+      return {
+        repos:'—', stars:'—', langs:'—', forks:'—',
+        async load() {
+          try {
+            const data = await fetchRepos();
+            const own  = data.filter(r => !r.fork);
+            this.repos = own.length;
+            this.stars = own.reduce((s, r) => s + r.stargazers_count, 0);
+            this.forks = own.reduce((s, r) => s + r.forks_count, 0);
+            this.langs = new Set(own.map(r => r.language).filter(Boolean)).size;
+          } catch {}
+        }
+      };
     }
 
-    function updateStats(repos) {
-      const own = repos.filter(r => !r.fork);
-      const stars = own.reduce((s, r) => s + r.stargazers_count, 0);
-      const forks = own.reduce((s, r) => s + r.forks_count, 0);
-      const langs = new Set(own.map(r => r.language).filter(Boolean)).size;
-
-      document.getElementById("stat-repos").textContent = own.length;
-      document.getElementById("stat-stars").textContent = stars;
-      document.getElementById("stat-langs").textContent = langs;
-      document.getElementById("stat-forks").textContent = forks;
+    function ghRepos() {
+      return {
+        all:[], filtered:[], filters:[], active:'All', loading:true, error:null,
+        async load() {
+          try {
+            const data = await fetchRepos();
+            this.all = data
+              .filter(r => !r.fork)
+              .sort((a, b) => (b.stargazers_count - a.stargazers_count) || new Date(b.updated_at) - new Date(a.updated_at));
+            this.filtered = this.all;
+            const counts = {};
+            this.all.forEach(r => { if (r.language) counts[r.language] = (counts[r.language] || 0) + 1; });
+            this.filters = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([l]) => l);
+          } catch(e) {
+            this.error = `Could not load repositories. ${e.message}`;
+          } finally {
+            this.loading = false;
+          }
+        },
+        filterBy(lang) {
+          this.active   = lang;
+          this.filtered = lang === 'All' ? this.all : this.all.filter(r => r.language === lang);
+        },
+        langColor,
+      };
     }
-
-    let allRepos = [];
-
-    function buildFilters(repos) {
-      allRepos = repos;
-      const langCounts = {};
-      repos.forEach(r => {
-        if (r.language) langCounts[r.language] = (langCounts[r.language] || 0) + 1;
-      });
-      const topLangs = Object.entries(langCounts)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 5)
-        .map(([l]) => l);
-
-      const container = document.getElementById("filters");
-      const all = makeFilterBtn("All", true, () => renderCards(allRepos));
-      container.appendChild(all);
-
-      topLangs.forEach(lang => {
-        const btn = makeFilterBtn(lang, false, () => {
-          renderCards(allRepos.filter(r => r.language === lang));
-        });
-        container.appendChild(btn);
-      });
-    }
-
-    function makeFilterBtn(label, active, onClick) {
-      const btn = document.createElement("button");
-      btn.className = "filter-btn" + (active ? " active" : "");
-      btn.textContent = label;
-      btn.addEventListener("click", () => {
-        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        onClick();
-      });
-      return btn;
-    }
-
-    function renderCards(repos) {
-      const grid = document.getElementById("repos-grid");
-      if (!repos.length) {
-        grid.innerHTML = `<p class="repos-loading">No repositories found.</p>`;
-        return;
-      }
-      grid.innerHTML = repos.map(r => `
-        <a class="repo-card" href="${r.html_url}" target="_blank" rel="noopener">
-          <div class="repo-name">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-              <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/>
-            </svg>
-            ${r.name}
-          </div>
-          <p class="repo-desc">${r.description || "No description provided."}</p>
-          <div class="repo-meta">
-            ${r.language ? `<span><span class="lang-dot" style="background:${langColor(r.language)}"></span>${r.language}</span>` : ""}
-            ${r.stargazers_count ? `<span>★ ${r.stargazers_count}</span>` : ""}
-            ${r.forks_count ? `<span>⑂ ${r.forks_count}</span>` : ""}
-          </div>
-        </a>
-      `).join("");
-    }
-
-    loadRepos();
   </script>
 </body>
 </html>
